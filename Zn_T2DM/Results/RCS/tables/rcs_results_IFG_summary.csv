@@ -1,0 +1,4 @@
+"Outcome","Model","Best_K","AIC","P_Total","P_Nonlinear"
+"IFG","model1",5,1329.72770146382,0,0
+"IFG","model2",5,1303.84542300138,0,0
+"IFG","model3",5,1287.42954824603,0,0

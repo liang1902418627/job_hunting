@@ -1,0 +1,273 @@
+2026-01-15 10:56:59.52369 INFO::Writing function arguments to log file
+2026-01-15 10:56:59.536823 DEBUG::Function arguments
+2026-01-15 10:56:59.555082 DEBUG::Output folder: Results/Zn_MaAsLin2
+2026-01-15 10:56:59.556134 DEBUG::Min Abundance: 0.000000
+2026-01-15 10:56:59.557207 DEBUG::Min Prevalence: 0.000000
+2026-01-15 10:56:59.558147 DEBUG::Normalization: CLR
+2026-01-15 10:56:59.559116 DEBUG::Transform: NONE
+2026-01-15 10:56:59.560044 DEBUG::Analysis method: LM
+2026-01-15 10:56:59.560971 DEBUG::Max significance: 0.250000
+2026-01-15 10:56:59.561853 DEBUG::Random effects:
+2026-01-15 10:56:59.562839 DEBUG::Fixed effects: Age,Gender,BMI,Education,Marital_status,family_income_cat,Smoking_status,Dringking_status,Energy_intake,Zn_intake,act_sports_intense,Family_diabetes_history,Serum_Zn
+2026-01-15 10:56:59.563873 DEBUG::Correction method: BH
+2026-01-15 10:56:59.564871 DEBUG::Standardize: TRUE
+2026-01-15 10:56:59.56576 DEBUG::Cores: 1
+2026-01-15 10:56:59.566635 INFO::Verifying options selected are valid
+2026-01-15 10:56:59.600516 INFO::Determining format of input files
+2026-01-15 10:56:59.666834 INFO::Input format is data samples as rows and metadata samples as rows
+2026-01-15 10:56:59.673969 DEBUG::A total of 2916 samples were found in both the data and metadata
+2026-01-15 10:56:59.674968 DEBUG::Reordering data/metadata to use same sample ordering
+2026-01-15 10:56:59.677569 INFO::Formula for fixed effects: expr ~  Age + Gender + BMI + Education + Marital_status + family_income_cat + Smoking_status + Dringking_status + Energy_intake + Zn_intake + act_sports_intense + Family_diabetes_history + Serum_Zn
+2026-01-15 10:56:59.688458 INFO::Factor detected for categorial metadata 'Gender'. Provide a reference argument or manually set factor ordering to change reference level.
+2026-01-15 10:56:59.694983 INFO::Factor detected for categorial metadata 'Education'. Provide a reference argument or manually set factor ordering to change reference level.
+2026-01-15 10:56:59.704054 INFO::Factor detected for categorial metadata 'Marital_status'. Provide a reference argument or manually set factor ordering to change reference level.
+2026-01-15 10:56:59.711123 INFO::Factor detected for categorial metadata 'family_income_cat'. Provide a reference argument or manually set factor ordering to change reference level.
+2026-01-15 10:56:59.720181 INFO::Factor detected for categorial metadata 'Smoking_status'. Provide a reference argument or manually set factor ordering to change reference level.
+2026-01-15 10:56:59.727596 INFO::Factor detected for categorial metadata 'Dringking_status'. Provide a reference argument or manually set factor ordering to change reference level.
+2026-01-15 10:56:59.737584 INFO::Factor detected for categorial metadata 'act_sports_intense'. Provide a reference argument or manually set factor ordering to change reference level.
+2026-01-15 10:56:59.744671 INFO::Factor detected for categorial metadata 'Family_diabetes_history'. Provide a reference argument or manually set factor ordering to change reference level.
+2026-01-15 10:56:59.753987 INFO::Filter data based on min abundance and min prevalence
+2026-01-15 10:56:59.75919 INFO::Total samples in data: 2916
+2026-01-15 10:56:59.763515 INFO::Min samples required with min abundance for a feature not to be filtered: 0.000000
+2026-01-15 10:56:59.773753 INFO::Total filtered features: 0
+2026-01-15 10:56:59.778291 INFO::Filtered feature names from abundance and prevalence filtering:
+2026-01-15 10:56:59.788915 INFO::Total filtered features with variance filtering: 0
+2026-01-15 10:56:59.794148 INFO::Filtered feature names from variance filtering:
+2026-01-15 10:56:59.799089 INFO::Running selected normalization method: CLR
+2026-01-15 10:57:00.318295 INFO::Applying z-score to standardize continuous metadata
+2026-01-15 10:57:00.366946 INFO::Running selected transform method: NONE
+2026-01-15 10:57:00.374649 INFO::Running selected analysis method: LM
+2026-01-15 10:57:00.448958 INFO::Fitting model to feature number 1, g_Acidaminococcus
+2026-01-15 10:57:00.470293 INFO::Fitting model to feature number 2, g_Acinetobacter
+2026-01-15 10:57:00.486254 INFO::Fitting model to feature number 3, g_Actinomyces
+2026-01-15 10:57:00.503719 INFO::Fitting model to feature number 4, g_Adlercreutzia
+2026-01-15 10:57:00.521233 INFO::Fitting model to feature number 5, g_Akkermansia
+2026-01-15 10:57:00.545624 INFO::Fitting model to feature number 6, g_Alistipes
+2026-01-15 10:57:00.563193 INFO::Fitting model to feature number 7, g_Anaerostipes
+2026-01-15 10:57:00.58061 INFO::Fitting model to feature number 8, g_Atopobium
+2026-01-15 10:57:00.598824 INFO::Fitting model to feature number 9, g_Bacteroides
+2026-01-15 10:57:00.63569 INFO::Fitting model to feature number 10, g_Bifidobacterium
+2026-01-15 10:57:00.662359 INFO::Fitting model to feature number 11, g_Bilophila
+2026-01-15 10:57:00.683239 INFO::Fitting model to feature number 12, g_Blautia
+2026-01-15 10:57:00.700147 INFO::Fitting model to feature number 13, g_Bradyrhizobium
+2026-01-15 10:57:00.719002 INFO::Fitting model to feature number 14, g_Brevibacterium
+2026-01-15 10:57:00.742106 INFO::Fitting model to feature number 15, g_Bulleidia
+2026-01-15 10:57:00.758874 INFO::Fitting model to feature number 16, g_Butyricimonas
+2026-01-15 10:57:00.776881 INFO::Fitting model to feature number 17, g_Catenibacterium
+2026-01-15 10:57:00.793514 INFO::Fitting model to feature number 18, g_Citrobacter
+2026-01-15 10:57:00.818951 INFO::Fitting model to feature number 19, g_Clostridium
+2026-01-15 10:57:00.837579 INFO::Fitting model to feature number 20, g_Collinsella
+2026-01-15 10:57:00.854246 INFO::Fitting model to feature number 21, g_Coprobacillus
+2026-01-15 10:57:00.870644 INFO::Fitting model to feature number 22, g_Coprococcus
+2026-01-15 10:57:00.891407 INFO::Fitting model to feature number 23, g_Desulfovibrio
+2026-01-15 10:57:00.906751 INFO::Fitting model to feature number 24, g_Devosia
+2026-01-15 10:57:00.922167 INFO::Fitting model to feature number 25, g_Dialister
+2026-01-15 10:57:00.936915 INFO::Fitting model to feature number 26, g_Dorea
+2026-01-15 10:57:00.957691 INFO::Fitting model to feature number 27, g_Eggerthella
+2026-01-15 10:57:00.972928 INFO::Fitting model to feature number 28, g_Enhydrobacter
+2026-01-15 10:57:00.987773 INFO::Fitting model to feature number 29, g_Enterobacter
+2026-01-15 10:57:01.008158 INFO::Fitting model to feature number 30, g_Faecalibacterium
+2026-01-15 10:57:01.024923 INFO::Fitting model to feature number 31, g_Fusobacterium
+2026-01-15 10:57:01.042389 INFO::Fitting model to feature number 32, g_Haemophilus
+2026-01-15 10:57:01.062534 INFO::Fitting model to feature number 33, g_Halomonas
+2026-01-15 10:57:01.080414 INFO::Fitting model to feature number 34, g_Holdemania
+2026-01-15 10:57:01.097752 INFO::Fitting model to feature number 35, g_Klebsiella
+2026-01-15 10:57:01.117643 INFO::Fitting model to feature number 36, g_Lachnobacterium
+2026-01-15 10:57:01.132593 INFO::Fitting model to feature number 37, g_Lachnospira
+2026-01-15 10:57:01.154511 INFO::Fitting model to feature number 38, g_Lacticigenium
+2026-01-15 10:57:01.170151 INFO::Fitting model to feature number 39, g_Lactobacillus
+2026-01-15 10:57:01.184695 INFO::Fitting model to feature number 40, g_Leptothrix
+2026-01-15 10:57:01.202671 INFO::Fitting model to feature number 41, g_Megamonas
+2026-01-15 10:57:01.218717 INFO::Fitting model to feature number 42, g_Megasphaera
+2026-01-15 10:57:01.236938 INFO::Fitting model to feature number 43, g_Methanobrevibacter
+2026-01-15 10:57:01.253122 INFO::Fitting model to feature number 44, g_Methylobacterium
+2026-01-15 10:57:01.270628 INFO::Fitting model to feature number 45, g_Ochrobactrum
+2026-01-15 10:57:01.354001 INFO::Fitting model to feature number 46, g_Odoribacter
+2026-01-15 10:57:01.369925 INFO::Fitting model to feature number 47, g_Oscillospira
+2026-01-15 10:57:01.387916 INFO::Fitting model to feature number 48, g_Parabacteroides
+2026-01-15 10:57:01.403971 INFO::Fitting model to feature number 49, g_Paraprevotella
+2026-01-15 10:57:01.421665 INFO::Fitting model to feature number 50, g_Phascolarctobacterium
+2026-01-15 10:57:01.440211 INFO::Fitting model to feature number 51, g_Prauseria
+2026-01-15 10:57:01.467002 INFO::Fitting model to feature number 52, g_Prevotella
+2026-01-15 10:57:01.485624 INFO::Fitting model to feature number 53, g_Pseudidiomarina
+2026-01-15 10:57:01.501749 INFO::Fitting model to feature number 54, g_Pseudomonas
+2026-01-15 10:57:01.518936 INFO::Fitting model to feature number 55, g_Ralstonia
+2026-01-15 10:57:01.536151 INFO::Fitting model to feature number 56, g_Roseburia
+2026-01-15 10:57:01.551868 INFO::Fitting model to feature number 57, g_SMB53
+2026-01-15 10:57:01.575952 INFO::Fitting model to feature number 58, g_Sediminibacterium
+2026-01-15 10:57:01.59347 INFO::Fitting model to feature number 59, g_Serratia
+2026-01-15 10:57:01.610977 INFO::Fitting model to feature number 60, g_Sphingomonas
+2026-01-15 10:57:01.628986 INFO::Fitting model to feature number 61, g_Staphylococcus
+2026-01-15 10:57:01.645704 INFO::Fitting model to feature number 62, g_Streptococcus
+2026-01-15 10:57:01.671189 INFO::Fitting model to feature number 63, g_Sutterella
+2026-01-15 10:57:01.686524 INFO::Fitting model to feature number 64, g_Synergistes
+2026-01-15 10:57:01.703833 INFO::Fitting model to feature number 65, g_Turicibacter
+2026-01-15 10:57:01.721059 INFO::Fitting model to feature number 66, g_Veillonella
+2026-01-15 10:57:01.73803 INFO::Fitting model to feature number 67, g_WAL_1855D
+2026-01-15 10:57:01.753123 INFO::Fitting model to feature number 68, g_Eubacterium
+2026-01-15 10:57:01.775608 INFO::Fitting model to feature number 69, g_Ruminococcus
+2026-01-15 10:57:01.85075 INFO::Counting total values for each feature
+2026-01-15 10:57:01.91502 INFO::Writing filtered data to file Results/Zn_MaAsLin2/features/filtered_data.tsv
+2026-01-15 10:57:02.220806 INFO::Writing filtered, normalized data to file Results/Zn_MaAsLin2/features/filtered_data_norm.tsv
+2026-01-15 10:57:02.644107 INFO::Writing filtered, normalized, transformed data to file Results/Zn_MaAsLin2/features/filtered_data_norm_transformed.tsv
+2026-01-15 10:57:03.068325 INFO::Writing residuals to file Results/Zn_MaAsLin2/fits/residuals.rds
+2026-01-15 10:57:03.145859 INFO::Writing fitted values to file Results/Zn_MaAsLin2/fits/fitted.rds
+2026-01-15 10:57:03.230668 INFO::Writing all results to file (ordered by increasing q-values): Results/Zn_MaAsLin2/all_results.tsv
+2026-01-15 10:57:03.261032 INFO::Writing the significant results (those which are less than or equal to the threshold of 0.250000 ) to file (ordered by increasing q-values): Results/Zn_MaAsLin2/significant_results.tsv
+2026-01-15 10:57:03.272978 INFO::Writing heatmap of significant results to file: Results/Zn_MaAsLin2/heatmap.pdf
+2026-01-15 10:57:03.81477 INFO::Writing association plots (one for each significant association) to output folder: Results/Zn_MaAsLin2
+2026-01-15 10:57:03.826418 INFO::Plotting associations from most to least significant, grouped by metadata
+2026-01-15 10:57:03.833582 INFO::Plotting data for metadata number 1, BMI
+2026-01-15 10:57:03.839578 INFO::Creating scatter plot for continuous data, BMI vs g_Akkermansia
+2026-01-15 10:57:05.203084 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:05.20461 INFO::Creating scatter plot for continuous data, BMI vs g_Ruminococcus
+2026-01-15 10:57:05.469662 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:05.471022 INFO::Creating scatter plot for continuous data, BMI vs g_Bacteroides
+2026-01-15 10:57:05.684137 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:05.685484 INFO::Creating scatter plot for continuous data, BMI vs g_Parabacteroides
+2026-01-15 10:57:05.902729 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:05.904019 INFO::Creating scatter plot for continuous data, BMI vs g_Blautia
+2026-01-15 10:57:06.115936 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:06.117203 INFO::Creating scatter plot for continuous data, BMI vs g_Butyricimonas
+2026-01-15 10:57:06.331514 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:06.332867 INFO::Creating scatter plot for continuous data, BMI vs g_Odoribacter
+2026-01-15 10:57:06.538358 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:06.539706 INFO::Creating scatter plot for continuous data, BMI vs g_Oscillospira
+2026-01-15 10:57:06.736298 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:06.737628 INFO::Creating scatter plot for continuous data, BMI vs g_Ralstonia
+2026-01-15 10:57:06.953123 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:06.954406 INFO::Creating scatter plot for continuous data, BMI vs g_Dorea
+2026-01-15 10:57:07.158457 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:07.159749 INFO::Creating scatter plot for continuous data, BMI vs g_Alistipes
+2026-01-15 10:57:07.368568 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:07.369937 INFO::Creating scatter plot for continuous data, BMI vs g_Coprobacillus
+2026-01-15 10:57:07.557523 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:07.558851 INFO::Creating scatter plot for continuous data, BMI vs g_Faecalibacterium
+2026-01-15 10:57:07.759662 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:07.760935 INFO::Creating scatter plot for continuous data, BMI vs g_Holdemania
+2026-01-15 10:57:07.964138 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:07.965402 INFO::Creating scatter plot for continuous data, BMI vs g_Sutterella
+2026-01-15 10:57:08.211483 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:08.212847 INFO::Creating scatter plot for continuous data, BMI vs g_Clostridium
+2026-01-15 10:57:08.418048 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:08.419345 INFO::Creating scatter plot for continuous data, BMI vs g_Desulfovibrio
+2026-01-15 10:57:08.624482 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:11.566363 INFO::Plotting data for metadata number 2, Age
+2026-01-15 10:57:11.575056 INFO::Creating scatter plot for continuous data, Age vs g_Klebsiella
+2026-01-15 10:57:11.756781 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:11.758119 INFO::Creating scatter plot for continuous data, Age vs g_Enterobacter
+2026-01-15 10:57:11.976713 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:11.978102 INFO::Creating scatter plot for continuous data, Age vs g_Citrobacter
+2026-01-15 10:57:12.171489 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:12.172846 INFO::Creating scatter plot for continuous data, Age vs g_Faecalibacterium
+2026-01-15 10:57:12.383552 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:12.384941 INFO::Creating scatter plot for continuous data, Age vs g_Alistipes
+2026-01-15 10:57:12.59062 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:12.591929 INFO::Creating scatter plot for continuous data, Age vs g_Lactobacillus
+2026-01-15 10:57:12.8066 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:12.808047 INFO::Creating scatter plot for continuous data, Age vs g_Dorea
+2026-01-15 10:57:13.010513 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:13.011837 INFO::Creating scatter plot for continuous data, Age vs g_Sediminibacterium
+2026-01-15 10:57:13.227068 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:13.22847 INFO::Creating scatter plot for continuous data, Age vs g_Actinomyces
+2026-01-15 10:57:13.438725 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:13.440096 INFO::Creating scatter plot for continuous data, Age vs g_Lachnospira
+2026-01-15 10:57:13.640442 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:13.641819 INFO::Creating scatter plot for continuous data, Age vs g_Veillonella
+2026-01-15 10:57:13.8662 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:13.867491 INFO::Creating scatter plot for continuous data, Age vs g_Desulfovibrio
+2026-01-15 10:57:14.073514 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:14.074806 INFO::Creating scatter plot for continuous data, Age vs g_Holdemania
+2026-01-15 10:57:14.278816 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:14.280263 INFO::Creating scatter plot for continuous data, Age vs g_Butyricimonas
+2026-01-15 10:57:14.49923 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:17.424389 INFO::Plotting data for metadata number 3, Education
+2026-01-15 10:57:17.431019 INFO::Creating boxplot for categorical data, Education vs g_Sutterella
+2026-01-15 10:57:17.687873 INFO::Creating boxplot for categorical data, Education vs g_Parabacteroides
+2026-01-15 10:57:17.891244 INFO::Creating boxplot for categorical data, Education vs g_Bacteroides
+2026-01-15 10:57:18.093552 INFO::Creating boxplot for categorical data, Education vs g_Alistipes
+2026-01-15 10:57:18.304157 INFO::Creating boxplot for categorical data, Education vs g_Alistipes
+2026-01-15 10:57:18.498965 INFO::Creating boxplot for categorical data, Education vs g_Dorea
+2026-01-15 10:57:18.690663 INFO::Creating boxplot for categorical data, Education vs g_Sutterella
+2026-01-15 10:57:18.88981 INFO::Creating boxplot for categorical data, Education vs g_Phascolarctobacterium
+2026-01-15 10:57:19.095194 INFO::Creating boxplot for categorical data, Education vs g_Prevotella
+2026-01-15 10:57:19.300029 INFO::Creating boxplot for categorical data, Education vs g_Butyricimonas
+2026-01-15 10:57:19.506561 INFO::Creating boxplot for categorical data, Education vs g_Dialister
+2026-01-15 10:57:19.715968 INFO::Creating boxplot for categorical data, Education vs g_SMB53
+2026-01-15 10:57:22.762203 INFO::Plotting data for metadata number 4, family_income_cat
+2026-01-15 10:57:22.769975 INFO::Creating boxplot for categorical data, family_income_cat vs g_Megasphaera
+2026-01-15 10:57:22.934042 INFO::Creating boxplot for categorical data, family_income_cat vs g_Bacteroides
+2026-01-15 10:57:23.132629 INFO::Creating boxplot for categorical data, family_income_cat vs g_Odoribacter
+2026-01-15 10:57:23.341845 INFO::Creating boxplot for categorical data, family_income_cat vs g_Parabacteroides
+2026-01-15 10:57:23.541166 INFO::Creating boxplot for categorical data, family_income_cat vs g_Bacteroides
+2026-01-15 10:57:23.742675 INFO::Creating boxplot for categorical data, family_income_cat vs g_Butyricimonas
+2026-01-15 10:57:23.958071 INFO::Creating boxplot for categorical data, family_income_cat vs g_Blautia
+2026-01-15 10:57:24.159763 INFO::Creating boxplot for categorical data, family_income_cat vs g_Parabacteroides
+2026-01-15 10:57:24.365826 INFO::Creating boxplot for categorical data, family_income_cat vs g_WAL_1855D
+2026-01-15 10:57:24.575279 INFO::Creating boxplot for categorical data, family_income_cat vs g_Streptococcus
+2026-01-15 10:57:24.768883 INFO::Creating boxplot for categorical data, family_income_cat vs g_Staphylococcus
+2026-01-15 10:57:24.971542 INFO::Creating boxplot for categorical data, family_income_cat vs g_Roseburia
+2026-01-15 10:57:25.165068 INFO::Creating boxplot for categorical data, family_income_cat vs g_Prauseria
+2026-01-15 10:57:25.375562 INFO::Creating boxplot for categorical data, family_income_cat vs g_Sediminibacterium
+2026-01-15 10:57:25.565462 INFO::Creating boxplot for categorical data, family_income_cat vs g_WAL_1855D
+2026-01-15 10:57:25.77532 INFO::Creating boxplot for categorical data, family_income_cat vs g_Parabacteroides
+2026-01-15 10:57:25.972875 INFO::Creating boxplot for categorical data, family_income_cat vs g_Parabacteroides
+2026-01-15 10:57:26.179763 INFO::Creating boxplot for categorical data, family_income_cat vs g_Fusobacterium
+2026-01-15 10:57:26.395281 INFO::Creating boxplot for categorical data, family_income_cat vs g_Blautia
+2026-01-15 10:57:26.601372 INFO::Creating boxplot for categorical data, family_income_cat vs g_Prevotella
+2026-01-15 10:57:29.703791 INFO::Plotting data for metadata number 5, Smoking_status
+2026-01-15 10:57:29.710946 INFO::Creating boxplot for categorical data, Smoking_status vs g_Atopobium
+2026-01-15 10:57:29.861054 INFO::Creating boxplot for categorical data, Smoking_status vs g_Prevotella
+2026-01-15 10:57:30.621359 INFO::Plotting data for metadata number 6, Serum_Zn
+2026-01-15 10:57:30.628976 INFO::Creating scatter plot for continuous data, Serum_Zn vs g_Ralstonia
+2026-01-15 10:57:30.798746 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:30.800081 INFO::Creating scatter plot for continuous data, Serum_Zn vs g_Sediminibacterium
+2026-01-15 10:57:31.009651 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:31.011049 INFO::Creating scatter plot for continuous data, Serum_Zn vs g_Bradyrhizobium
+2026-01-15 10:57:31.20992 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:31.211184 INFO::Creating scatter plot for continuous data, Serum_Zn vs g_Adlercreutzia
+2026-01-15 10:57:31.411609 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:31.41304 INFO::Creating scatter plot for continuous data, Serum_Zn vs g_Pseudidiomarina
+2026-01-15 10:57:31.592771 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:31.594158 INFO::Creating scatter plot for continuous data, Serum_Zn vs g_Prauseria
+2026-01-15 10:57:31.782411 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:31.783767 INFO::Creating scatter plot for continuous data, Serum_Zn vs g_SMB53
+2026-01-15 10:57:31.983598 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:31.98503 INFO::Creating scatter plot for continuous data, Serum_Zn vs g_Halomonas
+2026-01-15 10:57:32.16958 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:32.170854 INFO::Creating scatter plot for continuous data, Serum_Zn vs g_Phascolarctobacterium
+2026-01-15 10:57:32.366463 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:32.367808 INFO::Creating scatter plot for continuous data, Serum_Zn vs g_Bilophila
+2026-01-15 10:57:32.579932 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:35.367649 INFO::Plotting data for metadata number 7, act_sports_intense
+2026-01-15 10:57:35.374796 INFO::Creating boxplot for categorical data, act_sports_intense vs g_Ochrobactrum
+2026-01-15 10:57:35.522791 INFO::Creating boxplot for categorical data, act_sports_intense vs g_Devosia
+2026-01-15 10:57:35.694255 INFO::Creating boxplot for categorical data, act_sports_intense vs g_Pseudidiomarina
+2026-01-15 10:57:35.872972 INFO::Creating boxplot for categorical data, act_sports_intense vs g_Megamonas
+2026-01-15 10:57:36.040441 INFO::Creating boxplot for categorical data, act_sports_intense vs g_Prauseria
+2026-01-15 10:57:37.50639 INFO::Plotting data for metadata number 8, Gender
+2026-01-15 10:57:37.514068 INFO::Creating boxplot for categorical data, Gender vs g_Bifidobacterium
+2026-01-15 10:57:37.654482 INFO::Creating boxplot for categorical data, Gender vs g_Ralstonia
+2026-01-15 10:57:37.845623 INFO::Creating boxplot for categorical data, Gender vs g_Fusobacterium
+2026-01-15 10:57:38.037031 INFO::Creating boxplot for categorical data, Gender vs g_Bradyrhizobium
+2026-01-15 10:57:38.228384 INFO::Creating boxplot for categorical data, Gender vs g_Odoribacter
+2026-01-15 10:57:38.411317 INFO::Creating boxplot for categorical data, Gender vs g_Roseburia
+2026-01-15 10:57:38.594563 INFO::Creating boxplot for categorical data, Gender vs g_Dialister
+2026-01-15 10:57:38.78404 INFO::Creating boxplot for categorical data, Gender vs g_Sediminibacterium
+2026-01-15 10:57:41.008 INFO::Plotting data for metadata number 9, Energy_intake
+2026-01-15 10:57:41.015676 INFO::Creating scatter plot for continuous data, Energy_intake vs g_Prauseria
+2026-01-15 10:57:41.181557 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:41.182932 INFO::Creating scatter plot for continuous data, Energy_intake vs g_Fusobacterium
+2026-01-15 10:57:41.378672 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:41.380105 INFO::Creating scatter plot for continuous data, Energy_intake vs g_Ruminococcus
+2026-01-15 10:57:41.584977 DEBUG::`geom_smooth()` using formula = 'y ~ x'
+2026-01-15 10:57:42.470847 INFO::Plotting data for metadata number 10, Marital_status
+2026-01-15 10:57:42.477282 INFO::Creating boxplot for categorical data, Marital_status vs g_Adlercreutzia
+2026-01-15 10:57:42.616991 INFO::Creating boxplot for categorical data, Marital_status vs g_Staphylococcus
+2026-01-15 10:57:42.799506 INFO::Creating boxplot for categorical data, Marital_status vs g_Prauseria
+2026-01-15 10:57:43.75383 INFO::Plotting data for metadata number 11, Family_diabetes_history
+2026-01-15 10:57:43.760512 INFO::Creating boxplot for categorical data, Family_diabetes_history vs g_Sutterella
+2026-01-15 10:57:43.905926 INFO::Creating boxplot for categorical data, Family_diabetes_history vs g_Butyricimonas
+2026-01-15 10:57:44.093564 INFO::Creating boxplot for categorical data, Family_diabetes_history vs g_Phascolarctobacterium
+2026-01-15 10:57:45.074668 INFO::Plotting data for metadata number 12, Dringking_status
+2026-01-15 10:57:45.082186 INFO::Creating boxplot for categorical data, Dringking_status vs g_Adlercreutzia
