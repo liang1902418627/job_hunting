@@ -1,0 +1,86 @@
+# -----------------------------------------------------------------------------------------------------------
+# 绘制基线表
+# -----------------------------------------------------------------------------------------------------------
+
+rm(list = ls())
+# 加载r包
+packages <- c("dplyr", "gtsummary")  # 只保留实际使用的包
+load_packages <- function(packages) {
+  missing <- packages[!vapply(packages, requireNamespace, logical(1), quietly = TRUE)]
+  if (length(missing) > 0) {
+    message("Installing missing packages: ", paste(missing, collapse = ", "))
+    install.packages(missing, repos = "https://cloud.r-project.org")
+  }
+  loaded <- vapply(packages, function(pkg) {
+    if (!requireNamespace(pkg, quietly = TRUE)) {
+      message("Package not available after installation: ", pkg)
+      return(FALSE)
+    }
+    suppressPackageStartupMessages(library(pkg, character.only = TRUE, quietly = TRUE))
+    TRUE
+  }, logical(1))
+  loaded
+}
+
+load_packages(packages)
+
+# 读取数据
+MetaData <- readRDS("data/heart_disease_data.rds")
+
+# 选取变量
+vars <- c("age", "sex", "cp", "trestbps", "chol", "fbs", 
+          "restecg", "thalach", "exang", "oldpeak", "num")
+
+# 检查变量
+missing_vars <- setdiff(vars, names(MetaData))
+if (length(missing_vars) > 0) {
+  cat("Missing variables: ", paste(missing_vars, collapse = ", "), "\n")
+}
+# 检查变量正态性---------------
+normality_results <- sapply(vars, function(var) 
+  if (is.numeric(MetaData[[var]])) {
+    if (shapiro.test(MetaData[[var]])$p.value < 0.05) {
+      cat(var, ": non-normal\n")
+    }
+  }
+)
+
+# 创建基线表
+table1 <- MetaData %>%
+  select(all_of(vars)) %>%
+  tbl_summary(
+    by = "num",
+    type = list(all_dichotomous() ~ "categorical"),
+    statistic = list(all_continuous() ~ "{mean}±{sd}",
+                     trestbps ~ "{median} [{p25}, {p75}]",
+                     chol ~ "{median} [{p25}, {p75}]",
+                     thalach ~ "{median} [{p25}, {p75}]",
+                     oldpeak ~ "{median} [{p25}, {p75}]",
+                     all_categorical() ~ "{n} ({p})"),
+    missing = "no",
+    percent = "column",
+    digits = list(all_categorical() ~ c(0, 2), all_continuous() ~ 2)
+  ) %>%
+  add_overall() %>%
+  add_p(
+    test = list(age ~ "t.test",
+                trestbps ~ "wilcox.test",
+                chol ~ "wilcox.test",
+                thalach ~ "wilcox.test",
+                oldpeak ~ "wilcox.test",
+                all_categorical() ~ "chisq.test"),
+    pvalue_fun = ~ style_pvalue(.x, digits = 3)
+  ) %>%
+  modify_header(label = "**Variable**") %>%
+  bold_labels()
+# 打印
+print(table1)
+
+# 保存为CSV
+dir <- "Results/baseline_table"
+if (!dir.exists(dir)) {
+  dir.create(dir, recursive = TRUE)
+}
+write.csv(as_tibble(table1),
+          file.path(dir, "baseline_table.csv"), 
+          row.names = FALSE)

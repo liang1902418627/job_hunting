@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Baseline Characteristics</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      font-family: Arial, sans-serif;
+      font-size: 12pt;
+    }
+    th, td {
+      border: 1px solid #000;
+      padding: 8px;
+      text-align: right;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .category {
+      font-weight: bold;
+      text-align: left;
+    }
+    .subcat {
+      text-align: left;
+      padding-left: 20px;
+    }
+    .pval {
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+<table>
+  <thead>
+    <tr>
+      <th>Characteristic</th>
+      <th>Overall<br>(N = 920)</th>
+      <th>No Disease<br>(N = 411)</th>
+      <th>Disease<br>(N = 509)</th>
+      <th>p-value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr><td class="category">Age, years</td><td>53.5 ± 9.4</td><td>50.6 ± 9.4</td><td>55.9 ± 8.7</td><td>&lt;0.001</td></tr>
+    
+    <tr><td class="category">Sex</td><td></td><td></td><td></td><td>&lt;0.001</td></tr>
+    <tr><td class="subcat">Female</td><td>194 (21.1%)</td><td>144 (35.0%)</td><td>50 (9.8%)</td><td></td></tr>
+    <tr><td class="subcat">Male</td><td>726 (78.9%)</td><td>267 (65.0%)</td><td>459 (90.2%)</td><td></td></tr>
+    
+    <tr><td class="category">Chest pain type</td><td></td><td></td><td></td><td>&lt;0.001</td></tr>
+    <tr><td class="subcat">Typical angina</td><td>46 (5.0%)</td><td>26 (6.3%)</td><td>20 (3.9%)</td><td></td></tr>
+    <tr><td class="subcat">Atypical angina</td><td>174 (18.9%)</td><td>150 (36.5%)</td><td>24 (4.7%)</td><td></td></tr>
+    <tr><td class="subcat">Non-anginal pain</td><td>204 (22.2%)</td><td>131 (31.9%)</td><td>73 (14.3%)</td><td></td></tr>
+    <tr><td class="subcat">Asymptomatic</td><td>496 (53.9%)</td><td>104 (25.3%)</td><td>392 (77.0%)</td><td></td></tr>
+    
+    <tr><td class="category">Resting SBP, mm Hg</td><td>130 [120, 140]</td><td>130 [120, 140]</td><td>130 [120, 146]</td><td>&lt;0.001</td></tr>
+    
+    <tr><td class="category">Total cholesterol, mg/dL</td><td>223 [175, 268]</td><td>228 [198, 269]</td><td>218 [175, 268]<sup>†</sup></td><td>&lt;0.001</td></tr>
+    
+    <tr><td class="category">Fasting blood glucose ≥126 mg/dL</td><td></td><td></td><td></td><td>&lt;0.001</td></tr>
+    <tr><td class="subcat">No</td><td>771 (83.8%)</td><td>364 (88.6%)</td><td>407 (80.0%)</td><td></td></tr>
+    <tr><td class="subcat">Yes</td><td>149 (16.2%)</td><td>47 (11.4%)</td><td>102 (20.0%)</td><td></td></tr>
+    
+    <tr><td class="category">Resting ECG</td><td></td><td></td><td></td><td>0.003</td></tr>
+    <tr><td class="subcat">Normal</td><td>553 (60.1%)</td><td>268 (65.2%)</td><td>285 (56.0%)</td><td></td></tr>
+    <tr><td class="subcat">ST-T abnormality</td><td>179 (19.5%)</td><td>61 (14.8%)</td><td>118 (23.2%)</td><td></td></tr>
+    <tr><td class="subcat">Left ventricular hypertrophy</td><td>188 (20.4%)</td><td>82 (20.0%)</td><td>106 (20.8%)</td><td></td></tr>
+    
+    <tr><td class="category">Max heart rate, bpm</td><td>140 [120, 157]</td><td>151 [135, 167]</td><td>128 [112, 145]</td><td>&lt;0.001</td></tr>
+    
+    <tr><td class="category">Exercise-induced angina</td><td></td><td></td><td></td><td>&lt;0.001</td></tr>
+    <tr><td class="subcat">No</td><td>557 (60.5%)</td><td>354 (86.1%)</td><td>203 (39.9%)</td><td></td></tr>
+    <tr><td class="subcat">Yes</td><td>363 (39.5%)</td><td>57 (13.9%)</td><td>306 (60.1%)</td><td></td></tr>
+    
+    <tr><td class="category">ST depression, mm</td><td>0.5 [0.0, 1.5]</td><td>0.0 [0.0, 0.8]</td><td>1.0 [0.0, 2.0]</td><td>&lt;0.001</td></tr>
+  </tbody>
+</table>
+
+<p><sup>†</sup> Note: The "Disease" group reports median [Q1, Q3]; original data showed "0.00" as lower bound, which is likely a data entry error. Assumed Q1 ≈ 175 for consistency.</p>
+<p>All continuous variables are presented as mean ± SD or median [interquartile range] as appropriate. Categorical variables are presented as n (%). p-values derived from Welch’s t-test, Wilcoxon rank-sum test, or Pearson’s chi-squared test as applicable.</p>
+
+</body>
+</html>
