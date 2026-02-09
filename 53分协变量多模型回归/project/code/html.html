@@ -1,0 +1,520 @@
+<section class="_135editor" data-tools="135编辑器" data-id="165616" data-color="#92d050" data-tplid="360576">
+	<section style="margin: 10px auto;">
+		<section style="width: 25px;box-sizing:border-box;">
+			<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 30 30" style="display: block;" xml:space="default">
+				<g id="图层_2" data-name="图层 2">
+					<g id="图层_1-2" data-name="图层 1">
+						<path d="M3,30V3H30" style="fill:none;stroke:#d6e37d;stroke-width:6px"></path>
+					</g>
+				</g>
+			</svg>
+		</section>
+		<section style="background-color: #f0fce4;padding: 15px 10px;margin: -15px 0 0 9px;box-sizing:border-box;">
+			<section data-autoskip="1" class="135brush" style="text-align: justify; line-height: 2em; letter-spacing: 1.5px; font-size: 15px; color: #333333; background-color: transparent;">
+				<p>
+					<span style="font-size:15px;">在数据分析中，回归分析是常用的统计方法，尤其在探索变量之间的关系时。在本教程中，我们将通过一个实际的例子，演示如何使用R语言高效地进行回归分析，批量处理不同类型的暴露变量（包括分类变量和连续变量），并生成回归结果表格。我们将通过自定义函数来批量处理不同模型和变量类型，生成清晰的回归分析结果，帮助你轻松得出结论。</span>
+				</p>
+			</section>
+		</section>
+		<section>
+			<section style="width: 50%; border-bottom: 1px solid #92d050; margin-top: 10px; margin-left: auto; height: 1px;box-sizing:border-box;max-width:50% !important;" data-width="50%"></section>
+		</section>
+	</section>
+</section>
+<section class="_135editor" data-role="title" data-tools="135编辑器" data-id="107453" data-color="#92d050">
+	<section style="text-align: center;margin: 10px auto;">
+		<section style="display: flex;justify-content: flex-start;align-items: center;margin-left: 4px;">
+			<section style="font-size: 24px;letter-spacing: 1.5px;color: #92d050;text-align: center;font-style: italic;">
+				<strong>0</strong><strong class="autonum" data-original-title="" title="">1</strong>
+			</section>
+			<section class="135brush" data-brushtype="text" style="font-size: 16px;letter-spacing: 1.5px;color: #000;margin-left: 10px;">
+				<h2 class="qk-md-head" data-spm-anchor-id="5176.28103460.0.i44.15287551YcTZLF" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; font-size: 20px; margin: 16px 0px; line-height: 32px; animation: auto ease 0s 1 normal none running none !important; color: #060a26; letter-spacing: 0.2px; padding: 0px; opacity: 1;     text-align: left;       background-color: #ffffff; text-decoration-thickness: initial;font-family:&quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, -apple-system, BlinkMacSystemFont, STHeiti, &quot;Microsoft Yahei&quot;, Simsun, Tahoma, &quot;Apple Color Emoji&quot;, &quot;Segoe UI&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;, sans-serif;">
+					<strong mark-selection="">数据准备与回归配置</strong>
+				</h2>
+			</section>
+		</section>
+		<section class="assistant" style="max-width: 100% !important;width: 100%;height: 1px;background-color: #222222;box-sizing:border-box;" data-width="100%"></section>
+	</section>
+</section>
+<section class="_135editor" data-role="list">
+	<p>
+		<span style="font-size:15px;">在进行回归分析之前，首先需要加载数据，并配置不同的回归模型。数据中的暴露变量包括分类变量、连续变量和有序变量，目标是研究这些暴露变量与抑郁评分（</span><code data-start="458" data-end="470"><span style="font-size:15px;">phq9_score</span></code><span style="font-size:15px;">）之间的关系。</span>
+	</p>
+</section>
+<section data-role="paragraph" class="_135editor">
+	<p>
+		<br/>
+	</p>
+</section>
+<section data-role="paragraph" class="_135editor">
+	<p data-start="1133" data-end="1192">
+		<span style="font-size:15px;">在这部分代码中，我们首先读取清理后的数据集，并查看数据结构。接着定义了三种不同的回归模型，每个模型配置了不同的协变量。</span>
+	</p>
+</section>
+<section class="_135editor" data-role="title" data-tools="135编辑器" data-id="107453" data-color="#92d050">
+	<section style="text-align: center;margin: 10px auto;">
+		<section style="display: flex;justify-content: flex-start;align-items: center;margin-left: 4px;" class="">
+			<section style="font-size: 24px;letter-spacing: 1.5px;color: #92d050;text-align: center;font-style: italic;" class="">
+				<strong>02</strong>
+			</section>
+			<section class="135brush" data-brushtype="text" style="font-size: 16px;letter-spacing: 1.5px;color: #000;margin-left: 10px;">
+				<h2 class="qk-md-head" data-spm-anchor-id="5176.28103460.0.i52.15287551YcTZLF" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; font-size: 20px; margin: 16px 0px; line-height: 32px; animation: auto ease 0s 1 normal none running none !important; color: #060a26; letter-spacing: 0.2px; padding: 0px; opacity: 1;     text-align: left;       background-color: #ffffff; text-decoration-thickness: initial;font-family:&quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, -apple-system, BlinkMacSystemFont, STHeiti, &quot;Microsoft Yahei&quot;, Simsun, Tahoma, &quot;Apple Color Emoji&quot;, &quot;Segoe UI&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;, sans-serif;">
+					<strong>函数1：处理分类暴露变量的回归</strong>
+				</h2>
+			</section>
+		</section>
+		<section class="assistant" style="max-width: 100% !important;width: 100%;height: 1px;background-color: #222222;box-sizing:border-box;" data-width="100%"></section>
+	</section>
+</section>
+<p>
+	<span style="font-size:15px;">对于分类暴露变量（例如：screen_time_group），我们使用run_categorical_regression函数进行回归分析。该函数会自动根据暴露变量的分类水平（如：低、中、高）计算回归系数，并输出结果。</span>
+</p>
+<p>
+	<br/>
+</p>
+<p>
+	<br/>
+</p>
+<p>
+	<span style="font-size:15px;">该函数的关键步骤是通过</span><code data-start="3415" data-end="3420"><span style="font-size:15px;">glm</span></code><span style="font-size:15px;">函数拟合回归模型，并自动输出回归结果（包括OR或Beta值及95%置信区间）。如果有趋势检验，还会计算对应的p值。</span>
+</p>
+<section class="">
+	<section class="_135editor" data-role="title" data-tools="135编辑器" data-id="107453" data-color="#92d050">
+		<section style="text-align: center;margin: 10px auto;">
+			<section style="display: flex;justify-content: flex-start;align-items: center;margin-left: 4px;" class="">
+				<section style="font-size: 24px;letter-spacing: 1.5px;color: #92d050;text-align: center;font-style: italic;" class="">
+					<strong>03</strong>
+				</section>
+				<section class="135brush" data-brushtype="text" style="font-size: 16px;letter-spacing: 1.5px;color: #000;margin-left: 10px;">
+					<h2 class="qk-md-head" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; font-size: 20px; margin: 16px 0px; line-height: 32px; animation: auto ease 0s 1 normal none running none !important; color: #060a26; letter-spacing: 0.2px; padding: 0px; opacity: 1;     text-align: left;       background-color: #ffffff; text-decoration-thickness: initial;font-family:&quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, -apple-system, BlinkMacSystemFont, STHeiti, &quot;Microsoft Yahei&quot;, Simsun, Tahoma, &quot;Apple Color Emoji&quot;, &quot;Segoe UI&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;, sans-serif;">
+						<strong>函数2：处理连续暴露变量的回归</strong>
+					</h2>
+				</section>
+			</section>
+			<section class="assistant" style="max-width: 100% !important;width: 100%;height: 1px;background-color: #222222;box-sizing:border-box;" data-width="100%"></section>
+		</section>
+	</section>
+</section>
+<p>
+	<span style="font-size:15px;">对于连续暴露变量（例如：</span><code data-start="3521" data-end="3541"><span style="font-size:15px;">daily_screen_hours</span></code><span style="font-size:15px;">），我们使用</span><code data-start="3547" data-end="3574"><span style="font-size:15px;">run_continuous_regression</span></code><span style="font-size:15px;">函数进行回归分析，输出回归系数及其95%置信区间。</span>
+</p>
+<p>
+	<br/>
+</p>
+<p>
+	<span style="font-size:15px;">此函数通过</span><code data-start="5188" data-end="5193"><span style="font-size:15px;">glm</span></code><span style="font-size:15px;">拟合模型，并输出回归系数（OR或Beta值），如果是逻辑回归，还会返回相应的置信区间</span>。
+</p>
+<section class="_135editor" data-role="title" data-tools="135编辑器" data-id="107453" data-color="#92d050">
+	<section style="text-align: center;margin: 10px auto;">
+		<section style="display: flex;justify-content: flex-start;align-items: center;margin-left: 4px;" class="">
+			<section style="font-size: 24px;letter-spacing: 1.5px;color: #92d050;text-align: center;font-style: italic;">
+				<strong>04</strong>
+			</section>
+			<section class="135brush" data-brushtype="text" style="font-size: 16px;letter-spacing: 1.5px;color: #000;margin-left: 10px;">
+				<h2 class="qk-md-head" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; font-size: 20px; margin: 16px 0px; line-height: 32px; animation: auto ease 0s 1 normal none running none !important; color: #060a26; letter-spacing: 0.2px; padding: 0px; opacity: 1;     text-align: left;       background-color: #ffffff; text-decoration-thickness: initial;font-family:&quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, -apple-system, BlinkMacSystemFont, STHeiti, &quot;Microsoft Yahei&quot;, Simsun, Tahoma, &quot;Apple Color Emoji&quot;, &quot;Segoe UI&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;, sans-serif;">
+					<strong>批量回归分析流程</strong>
+				</h2>
+			</section>
+		</section>
+		<section class="assistant" style="max-width: 100% !important;width: 100%;height: 1px;background-color: #222222;box-sizing:border-box;" data-width="100%"></section>
+	</section>
+</section>
+<section data-role="paragraph" class="_135editor">
+	<p>
+		<span style="font-size:15px;">接下来，我们定义了暴露变量列表，并对每种暴露变量进行批量回归分析。每种暴露变量会分别应用于不同的模型，并生成回归分析结果表格。</span>
+	</p>
+</section>
+<section class="_135editor" data-role="paragraph">
+	<p>
+		<img src="https://bexp.135editor.com/files/users/946/9467025/202602/F6jYp65z_LBAB.png?auth_key=1771171199-0-0-93b7d8ae5c751b9b2eebb530a266b1fc" style="vertical-align:baseline;" alt="9634c832f7c1c6b345f5b104d415df5d.png"/>
+	</p>
+</section>
+<section class="_135editor" data-role="title" data-tools="135编辑器" data-id="107453" data-color="#92d050">
+	<section style="text-align: center;margin: 10px auto;">
+		<section style="display: flex;justify-content: flex-start;align-items: center;margin-left: 4px;" class="">
+			<section style="font-size: 24px;letter-spacing: 1.5px;color: #92d050;text-align: center;font-style: italic;">
+				<strong>05</strong>
+			</section>
+			<section class="135brush" data-brushtype="text" style="font-size: 16px;letter-spacing: 1.5px;color: #000;margin-left: 10px;">
+				<h2 class="qk-md-head" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; font-size: 20px; margin: 16px 0px; line-height: 32px; animation: auto ease 0s 1 normal none running none !important; color: #060a26; letter-spacing: 0.2px; padding: 0px; opacity: 1;     text-align: left;       background-color: #ffffff; text-decoration-thickness: initial;font-family:&quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, -apple-system, BlinkMacSystemFont, STHeiti, &quot;Microsoft Yahei&quot;, Simsun, Tahoma, &quot;Apple Color Emoji&quot;, &quot;Segoe UI&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;, sans-serif;">
+					<b>函数1 使用说明</b>
+				</h2>
+			</section>
+		</section>
+		<section class="assistant" style="max-width: 100% !important;width: 100%;height: 1px;background-color: #222222;box-sizing:border-box;" data-width="100%"></section>
+	</section>
+</section>
+<section data-role="paragraph" class="_135editor">
+	<h3 class="qk-md-head" data-spm-anchor-id="5176.28103460.0.i2.15287551UAN6Qt" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; font-size: 18px; margin: 16px 0px; line-height: 28px; animation: auto ease 0s 1 normal none running none !important; color: rgb(6, 10, 38); letter-spacing: 0.2px; padding: 0px; opacity: 1;     text-align: left;       background-color: rgb(255, 255, 255); text-decoration-thickness: initial;font-family:&quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, -apple-system, BlinkMacSystemFont, STHeiti, &quot;Microsoft Yahei&quot;, Simsun, Tahoma, &quot;Apple Color Emoji&quot;, &quot;Segoe UI&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;, sans-serif;">
+		<span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: rgb(6, 10, 38); animation: auto ease 0s 1 normal none running none !important; opacity: 1; letter-spacing: 0.2px; line-height: 26px; margin-bottom: 0px; padding: 0px;"><strong>📌 函数 1：</strong></span><code class="qk-md-code" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; font-feature-settings: normal; font-variation-settings: normal; font-size: 14px; white-space: break-spaces !important; padding: 2px 5px; color: rgb(6, 10, 38); word-break: break-all; border-radius: 6px; margin: 0px 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(6, 10, 38, 0.06) !important; animation: auto ease 0s 1 normal none running none !important; opacity: 1;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace;"><strong>run_categorical_regression()</strong></code>
+	</h3>
+</section>
+<section data-role="paragraph" class="_135editor">
+	<table width="100%" style="width: 100%;box-sizing:border-box;max-width:100% !important;">
+		<thead>
+			<tr class="firstRow">
+				<th>
+					项目
+				</th>
+				<th>
+					说明
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<span style="font-size: 15px;">用途</span>
+				</td>
+				<td>
+					<span style="font-size:15px;">对分类暴露变量（如 </span><code><span style="font-size:15px;">screen_time_group</span></code><span style="font-size:15px;">）进行线性回归（因结局为连续变量 </span><code><span style="font-size:15px;">phq9_score</span></code><span style="font-size:15px;">），并同时计算趋势检验（使用有序变量如 </span><code><span style="font-size:15px;">screen_time_quartile</span></code><span style="font-size:15px;">）。</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					适用场景
+				</td>
+				<td>
+					<span style="font-size:15px;">暴露变量为因子型（factor），有多个水平（如“低/中/高”），需以第一个水平为参照，估计其他水平的效应，并可选进行线性趋势检验。</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					输入参数
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>
+					<code>data</code>
+				</td>
+				<td>
+					<span style="font-size:15px;">数据框（data.frame），包含所有变量。</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code><span style="font-size:15px;">outcome_var</span></code>
+				</td>
+				<td>
+					<span style="font-size:15px;">字符串，结局变量名（如 </span><code><span style="font-size:15px;">&quot;phq9_score&quot;</span></code><span style="font-size:15px;">）。</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code><span style="font-size:15px;">exposure_cat</span></code>
+				</td>
+				<td>
+					<span style="font-size:15px;">字符串，分类暴露变量名（如 </span><code><span style="font-size:15px;">&quot;screen_time_group&quot;</span></code><span style="font-size:15px;">）。必须是因子（factor）类型。</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code><span style="font-size:15px;">exposure_trend</span></code>
+				</td>
+				<td>
+					<span style="font-size: 15px;">字符串，用于趋势检验的有序变量名（如 </span><code><span style="font-size: 15px;">&quot;screen_time_quartile&quot;</span></code><span style="font-size: 15px;">），若不进行趋势检验可设为 </span><code><span style="font-size: 15px;">NA</span></code><span style="font-size: 15px;">。</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code><span style="font-size:15px;">covariates</span></code>
+				</td>
+				<td>
+					<span style="font-size:15px;">字符向量，协变量列表（如 </span><code><span style="font-size:15px;">c(&quot;age&quot;, &quot;sex&quot;)</span></code><span style="font-size:15px;">），若为空则只调整截距（即 crude model）。</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code><span style="font-size:15px;">model_name</span></code>
+				</td>
+				<td>
+					<span style="font-size:15px;">字符串，当前模型名称（如 </span><code><span style="font-size:15px;">&quot;model2&quot;</span></code><span style="font-size:15px;">），用于结果标识。</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span style="font-size:15px;">输出内容</span>
+				</td>
+				<td>
+					<span style="font-size:15px;">返回一个数据框，包含：<br/>• </span><code><span style="font-size:15px;">Exposure</span></code><span style="font-size:15px;">：暴露变量名<br/>• </span><code><span style="font-size:15px;">Model</span></code><span style="font-size:15px;">：模型名称<br/>• </span><code><span style="font-size:15px;">Q1</span></code><span style="font-size:15px;">, </span><code><span style="font-size:15px;">Q2</span></code><span style="font-size:15px;">, ...：各组相对于参照组的效应估计（格式为 </span><code><span style="font-size:15px;">&quot;Est (Lower, Upper)&quot;</span></code><span style="font-size:15px;">）<br/>• </span><code><span style="font-size:15px;">p for trend</span></code><span style="font-size:15px;">：趋势检验的 p 值（若提供 </span><code><span style="font-size:15px;">exposure_trend</span></code><span style="font-size:15px;">）</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span style="font-size:15px;">注意事项</span>
+				</td>
+				<td>
+					<ul class="list-paddingleft-2" style="margin:0px;padding:0 0 0 30px;list-style-position:outside;">
+						<li>
+							<p>
+								<span style="font-size:15px;">要求 </span><code><span style="font-size:15px;">exposure_cat</span></code><span style="font-size:15px;"> 是因子且已设置参照组（默认第一水平为参照）。</span>
+							</p>
+						</li>
+						<li>
+							<p>
+								<span style="font-size:15px;">若 </span><code><span style="font-size:15px;">exposure_trend</span></code><span style="font-size:15px;"> 为 </span><code><span style="font-size:15px;">NA</span></code><span style="font-size:15px;">，则 </span><code><span style="font-size:15px;">p for trend</span></code><span style="font-size:15px;"> 列为 </span><code><span style="font-size:15px;">NA</span></code><span style="font-size:15px;">。</span>
+							</p>
+						</li>
+						<li>
+							<p>
+								<span style="font-size:15px;">因 </span><code><span style="font-size:15px;">phq9_score</span></code><span style="font-size:15px;"> 是连续变量，自动使用 </span><code><span style="font-size:15px;">gaussian</span></code><span style="font-size:15px;"> 族（即线性回归）。</span>
+							</p>
+						</li>
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+<section class="_135editor" data-role="title" data-tools="135编辑器" data-id="107453" data-color="#92d050">
+	<section style="text-align: center;margin: 10px auto;">
+		<section style="display: flex;justify-content: flex-start;align-items: center;margin-left: 4px;" class="">
+			<section style="font-size: 24px;letter-spacing: 1.5px;color: #92d050;text-align: center;font-style: italic;">
+				<strong>06</strong>
+			</section>
+			<section class="135brush" data-brushtype="text" style="font-size: 16px;letter-spacing: 1.5px;color: #000;margin-left: 10px;">
+				<h2 class="qk-md-head" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; font-size: 20px; margin: 16px 0px; line-height: 32px; animation: auto ease 0s 1 normal none running none !important; color: #060a26; letter-spacing: 0.2px; padding: 0px; opacity: 1;     text-align: left;       background-color: #ffffff; text-decoration-thickness: initial;font-family:&quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, -apple-system, BlinkMacSystemFont, STHeiti, &quot;Microsoft Yahei&quot;, Simsun, Tahoma, &quot;Apple Color Emoji&quot;, &quot;Segoe UI&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;, sans-serif;">
+					<strong>函数2 使用说明</strong>
+				</h2>
+			</section>
+		</section>
+		<section class="assistant" style="max-width: 100% !important;width: 100%;height: 1px;background-color: #222222;box-sizing:border-box;" data-width="100%"></section>
+	</section>
+</section>
+<section data-role="paragraph" class="_135editor">
+	<h3 class="qk-md-head" data-spm-anchor-id="5176.28103460.0.i1.15287551UAN6Qt" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; font-size: 18px; margin: 16px 0px; line-height: 28px; animation: auto ease 0s 1 normal none running none !important; color: #060a26; letter-spacing: 0.2px; padding: 0px; opacity: 1;     text-align: left;       background-color: #ffffff; text-decoration-thickness: initial;font-family:&quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, -apple-system, BlinkMacSystemFont, STHeiti, &quot;Microsoft Yahei&quot;, Simsun, Tahoma, &quot;Apple Color Emoji&quot;, &quot;Segoe UI&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;, sans-serif;">
+		<span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; animation: auto ease 0s 1 normal none running none !important; opacity: 1; letter-spacing: 0.2px; line-height: 26px; margin-bottom: 0px; padding: 0px;"><strong>📌 函数 2：</strong></span><code class="qk-md-code" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; font-feature-settings: normal; font-variation-settings: normal; font-size: 14px; white-space: break-spaces !important; padding: 2px 5px; color: #060a26; word-break: break-all; border-radius: 6px; margin: 0px 4px; background: none 0% 0% / auto repeat scroll padding-box border-box rgba(6, 10, 38, 0.06) !important; animation: auto ease 0s 1 normal none running none !important; opacity: 1;font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace;"><strong>run_continuous_regression()</strong></code>
+	</h3>
+	<table width="100%" style="width: 100%;box-sizing:border-box;max-width:100% !important;">
+		<thead>
+			<tr class="firstRow">
+				<th>
+					项目
+				</th>
+				<th>
+					说明
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<span style="font-size:15px;">用途</span>
+				</td>
+				<td>
+					<span style="font-size:15px;">对连续型暴露变量（如 </span><code><span style="font-size:15px;">daily_screen_hours</span></code><span style="font-size:15px;"> 或 </span><code><span style="font-size:15px;">screen_time_zscore</span></code><span style="font-size:15px;">）进行回归分析，估计每单位变化对结局的影响。</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span style="font-size:15px;">适用场景</span>
+				</td>
+				<td>
+					<span style="font-size:15px;">暴露变量为数值型（numeric），需报告回归系数（Beta）及其 95% 置信区间和 p 值。</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span style="font-size:15px;">输入参数</span>
+				</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>
+					<code>data</code>
+				</td>
+				<td>
+					<span style="font-size:15px;">数据框（data.frame）。</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code><span style="font-size:15px;">outcome_var</span></code>
+				</td>
+				<td>
+					<span style="font-size:15px;">字符串，结局变量名（如 </span><code><span style="font-size:15px;">&quot;phq9_score&quot;</span></code><span style="font-size:15px;">）。</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code><span style="font-size:15px;">exposure_cont</span></code>
+				</td>
+				<td>
+					<span style="font-size:15px;">字符串，连续暴露变量名（如 </span><code><span style="font-size:15px;">&quot;daily_screen_hours&quot;</span></code><span style="font-size:15px;">）。</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code><span style="font-size:15px;">covariates</span></code>
+				</td>
+				<td>
+					<span style="font-size:15px;">字符向量，协变量列表（可为空）。</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<code><span style="font-size:15px;">model_name</span></code>
+				</td>
+				<td>
+					<span style="font-size:15px;">字符串，模型名称（如 </span><code><span style="font-size:15px;">&quot;model3&quot;</span></code><span style="font-size:15px;">）。</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span style="font-size:15px;">输出内容</span>
+				</td>
+				<td>
+					<span style="font-size:15px;">返回一个数据框，包含：<br/>• </span><code><span style="font-size:15px;">Exposure</span></code><span style="font-size:15px;">：暴露变量名<br/>• </span><code><span style="font-size:15px;">Model</span></code><span style="font-size:15px;">：模型名称<br/>• </span><code><span style="font-size:15px;">Effect (95% CI)</span></code><span style="font-size:15px;">：格式为 </span><code><span style="font-size:15px;">&quot;Beta (Lower, Upper)&quot;</span></code><br/><span style="font-size:15px;">• </span><code><span style="font-size:15px;">P value</span></code><span style="font-size:15px;">：对应 p 值（保留三位小数）</span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span style="font-size:15px;">注意事项</span>
+				</td>
+				<td>
+					<ul class="list-paddingleft-2" style="margin:0px;padding:0 0 0 30px;list-style-position:outside;">
+						<li>
+							<p>
+								<span style="font-size:15px;">自动检测结局是否为因子以决定使用 logistic 还是 linear 回归（本例中为 linear）。</span>
+							</p>
+						</li>
+						<li>
+							<p>
+								<span style="font-size:15px;">若因共线性导致暴露变量被模型剔除，会返回警告并标记为 </span><code><span style="font-size:15px;">&quot;Error: Variable removed&quot;</span></code><span style="font-size:15px;">。</span>
+							</p>
+						</li>
+						<li>
+							<p>
+								<span style="font-size:15px;">自动适配 </span><code><span style="font-size:15px;">glm</span></code><span style="font-size:15px;"> 输出中的 p 值列名（`Pr(&gt;</span>
+							</p>
+						</li>
+					</ul>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+<section data-role="paragraph" class="_135editor">
+	<p>
+		<br/>
+	</p>
+</section>
+<section class="_135editor" data-role="title" data-tools="135编辑器" data-id="167088" data-color="#92d050">
+	<section style="margin: 10px auto; display: flex; justify-content: center;">
+		<section>
+			<section style="display: flex;justify-content: center;align-items: center;">
+				<section style="flex-shrink: 0;">
+					<section style="width: 8px;box-sizing:border-box;">
+						<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 13.99 22" style="display: block;" xml:space="default">
+							<g id="图层_2" data-name="图层 2">
+								<g id="图层_1-2" data-name="图层 1">
+									<path d="M0,22V18.08l6.89-4.26,4.39-2.75v-.19L6.89,8.13,0,3.87V0L14,9.21v3.58Z" style="fill:#36c45c;fill-rule:evenodd"></path>
+								</g>
+							</g>
+						</svg>
+					</section>
+				</section>
+				<section>
+					<section style="font-size: 16px;color: #000000;text-align: center;padding: 0 10px; ;box-sizing:border-box;">
+						<strong>总结</strong>
+					</section>
+				</section>
+				<section style="flex-shrink: 0;">
+					<section style="width: 8px;box-sizing:border-box;">
+						<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 14 22" style="display: block;" xml:space="default">
+							<g id="图层_2" data-name="图层 2">
+								<g id="图层_1-2" data-name="图层 1">
+									<path d="M14,22V18.08L7.1,13.82,2.72,11.07v-.19L7.1,8.13,14,3.87V0L0,9.21v3.58Z" style="fill:#36c45c;fill-rule:evenodd"></path>
+								</g>
+							</g>
+						</svg>
+					</section>
+				</section>
+			</section>
+			<section style="width: 70%;height: 4px;border-radius: 6px;background: linear-gradient(to right,#92d050,#6bd679);border-radius: 25px;margin: 0px auto 0;box-sizing:border-box;max-width:70% !important;" data-width="70%"></section>
+		</section>
+	</section>
+</section>
+<section class="_135editor" data-role="paragraph">
+	<section class="_135editor" data-role="splitline" data-tools="135编辑器" data-id="119139" data-color="#92d050">
+		<span style="font-size:15px;">本文介绍了如何高效批量处理不同类型的暴露变量，并利用自定义函数生成Logistic和线性回归结果表格。通过这种方法，您可以快速评估不同暴露因素对目标变量的影响，并将结果以表格形式输出，便于进一步分析和展示。</span>
+		<section style="margin: 10px auto;">
+			<section style="display: flex;justify-content: space-between;">
+				<section style="flex-shrink:0 ;display: flex;align-items: center;">
+					<section style="padding: 0 0 0 15px;box-sizing:border-box;">
+						<section style="width: 5px;height: 5px;border-radius: 100%;border-radius: 100%;border: 1px solid #92d050;background-color: #ffffff;box-sizing:border-box;"></section>
+					</section>
+					<section style="padding: 0 0 0 10px;box-sizing:border-box;">
+						<section style="width: 5px;height: 5px;border-radius: 100%;border-radius: 100%;border: 1px solid #92d050;background-color: #ffffff;box-sizing:border-box;"></section>
+					</section>
+					<section style="padding: 0 0 0 10px;box-sizing:border-box;">
+						<section style="width: 5px;height: 5px;border-radius: 100%;border-radius: 100%;border: 1px solid #92d050;background-color: #ffffff;box-sizing:border-box;"></section>
+					</section>
+				</section>
+				<section style="flex-shrink:0 ;display: flex;align-items: center;">
+					<section style="padding: 0 10px 0 0;box-sizing:border-box;">
+						<section style="width: 5px;height: 5px;border-radius: 100%;border-radius: 100%;border: 1px solid #92d050;background-color: #ffffff;box-sizing:border-box;"></section>
+					</section>
+					<section style="padding: 0 10px 0 0 ;box-sizing:border-box;">
+						<section style="width: 5px;height: 5px;border-radius: 100%;border-radius: 100%;border: 1px solid #92d050;background-color: #ffffff;box-sizing:border-box;"></section>
+					</section>
+					<section style="padding: 0 15px 0 0 ;box-sizing:border-box;">
+						<section style="width: 5px;height: 5px;border-radius: 100%;border-radius: 100%;border: 1px solid #92d050;background-color: #ffffff;box-sizing:border-box;"></section>
+					</section>
+				</section>
+			</section>
+			<section style="max-width: 100% !important;width: 100%;height: 1px;background-color: #92d050;margin: -3px 0 0 0;box-sizing:border-box;" data-width="100%"></section>
+		</section>
+	</section>
+	<section data-role="paragraph" class="_135editor">
+		<h3 class="qk-md-head" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; font-size: 18px; margin: 16px 0px; line-height: 28px; animation: auto ease 0s 1 normal none running none !important; color: #060a26; letter-spacing: 0.2px; padding: 0px; opacity: 1;     text-align: left;       background-color: #ffffff; text-decoration-thickness: initial;font-family:&quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, -apple-system, BlinkMacSystemFont, STHeiti, &quot;Microsoft Yahei&quot;, Simsun, Tahoma, &quot;Apple Color Emoji&quot;, &quot;Segoe UI&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;, sans-serif;">
+			<span class="qk-md-text complete" data-spm-anchor-id="5176.28103460.0.i94.15287551YcTZLF" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; animation: auto ease 0s 1 normal none running none !important; opacity: 1; letter-spacing: 0.2px; line-height: 26px; margin-bottom: 0px; padding: 0px;"><strong>🎁 <span style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; opacity: 1; letter-spacing: 0.2px; line-height: 26px; margin-bottom: 0px; padding: 0px; font-size: 15px; animation: auto ease 0s 1 normal none running none !important;">福利领取：获取完整代码 + 示例数据</span></strong></span>
+		</h3>
+		<section class="qk-md-paragraph" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; margin-bottom: 16px; margin-top: 0px; opacity: 1; color: #060a26; font-size: 15px; text-align: left; background-color: #ffffff; text-decoration-thickness: initial; animation: auto ease 0s 1 normal none running none !important;font-family:&quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, -apple-system, BlinkMacSystemFont, STHeiti, &quot;Microsoft Yahei&quot;, Simsun, Tahoma, &quot;Apple Color Emoji&quot;, &quot;Segoe UI&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;, sans-serif;">
+			<span style="font-size:15px;"><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; opacity: 1; font-size: 15px; animation: auto ease 0s 1 normal none running none !important;">如果你觉得这篇教程有帮助，欢迎按以下步骤领取&nbsp;</span><strong class="qk-md-strong complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; animation: auto ease 0s 1 normal none running none !important; opacity: 1;"><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; animation: auto ease 0s 1 normal none running none; opacity: 1; font-size: 15px;"><strong>完整 R 脚本 + heart_disease_data.rds 数据文件 + Word/PDF 导出扩展代码</strong></span></strong><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; opacity: 1; font-size: 15px; animation: auto ease 0s 1 normal none running none !important;">：</span></span>
+		</section>
+		<section class="_135editor" data-role="list">
+			<ol start="1" class="qk-md-ol list-paddingleft-2" style="list-style-type: auto;margin:0px;padding:0 0 0 30px;list-style-position:outside;">
+				<li>
+					<p>
+						<span style="font-size:15px;"><strong class="qk-md-strong complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; animation: auto ease 0s 1 normal none running none !important; opacity: 1;"><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; animation: auto ease 0s 1 normal none running none; opacity: 1; font-size: 15px;"><strong>关注本公众号</strong></span></strong><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; opacity: 1; font-size: 15px; animation: auto ease 0s 1 normal none running none !important;">（确保不错过后续干货）</span></span>
+					</p>
+				</li>
+				<li>
+					<p>
+						<span style="font-size:15px;"><strong class="qk-md-strong complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; animation: auto ease 0s 1 normal none running none !important; opacity: 1;"><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; animation: auto ease 0s 1 normal none running none; opacity: 1; font-size: 15px;"><strong>将本文分享到朋友圈</strong></span></strong><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; opacity: 1; font-size: 15px; animation: auto ease 0s 1 normal none running none !important;">，并保留&nbsp;</span><strong class="qk-md-strong complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; animation: auto ease 0s 1 normal none running none !important; opacity: 1;"><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; animation: auto ease 0s 1 normal none running none; opacity: 1; font-size: 15px;"><strong>24 小时以上</strong></span></strong><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; opacity: 1; font-size: 15px; animation: auto ease 0s 1 normal none running none !important;"></span></span>
+					</p>
+				</li>
+				<li>
+					<p>
+						<span style="font-size:15px;"><strong class="qk-md-strong complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; animation: auto ease 0s 1 normal none running none !important; opacity: 1;"><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; animation: auto ease 0s 1 normal none running none; opacity: 1; font-size: 15px;"><strong>添加我的企业微信</strong></span></strong></span>
+					</p>
+				</li>
+				<li>
+					<p>
+						<span style="font-size:15px;"><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; opacity: 1; font-size: 15px; animation: auto ease 0s 1 normal none running none !important;">添加后，请直接发送&nbsp;</span><strong class="qk-md-strong complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; animation: auto ease 0s 1 normal none running none !important; opacity: 1;"><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; animation: auto ease 0s 1 normal none running none; opacity: 1; font-size: 15px;"><strong>朋友圈分享截图</strong></span></strong><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; opacity: 1; font-size: 15px; animation: auto ease 0s 1 normal none running none !important;">（需显示时间）</span></span>
+					</p>
+				</li>
+			</ol>
+		</section>
+		<section class="qk-md-paragraph" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; margin-bottom: 16px; margin-top: 0px; opacity: 1; color: #060a26; font-size: 15px; text-align: left; background-color: #ffffff; text-decoration-thickness: initial; animation: auto ease 0s 1 normal none running none !important;font-family:&quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, -apple-system, BlinkMacSystemFont, STHeiti, &quot;Microsoft Yahei&quot;, Simsun, Tahoma, &quot;Apple Color Emoji&quot;, &quot;Segoe UI&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;, sans-serif;">
+			<span style="font-size:15px;"><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; opacity: 1; font-size: 15px; animation: auto ease 0s 1 normal none running none !important;">✅ 审核通过后，我会第一时间为你发送&nbsp;</span><strong class="qk-md-strong complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; animation: auto ease 0s 1 normal none running none !important; opacity: 1;"><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; animation: auto ease 0s 1 normal none running none; opacity: 1; font-size: 15px;"><strong>百度网盘 / 阿里云盘下载链接</strong></span></strong><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; color: #060a26; opacity: 1; font-size: 15px; animation: auto ease 0s 1 normal none running none !important;">！</span></span>
+		</section>
+		<blockquote class="qk-md-blockquote complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border-width: 0px 0px 0px 2px; border-style: solid; border-top-color: initial; border-right-color: initial; border-bottom-color: initial; border-left-color: rgba(6, 10, 38, 0.06); border-image: initial; margin: 16px 0px; color: #060a26; padding: 0px 18px; line-height: 26px; animation: auto ease 0s 1 normal none running none; font-size: 16px;       text-align: left;       background-color: #ffffff; text-decoration-thickness: initial;  ;font-family:&quot;PingFang SC&quot;, &quot;Helvetica Neue&quot;, -apple-system, BlinkMacSystemFont, STHeiti, &quot;Microsoft Yahei&quot;, Simsun, Tahoma, &quot;Apple Color Emoji&quot;, &quot;Segoe UI&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;, sans-serif;">
+			<section class="qk-md-paragraph" data-spm-anchor-id="5176.28103460.0.i89.15287551YcTZLF" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; margin-top: 0px; margin-bottom: 0px !important; animation: auto ease 0s 1 normal none running none !important; opacity: 1;">
+				<span style="font-size:15px;"><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; opacity: 1; font-size: 15px; color: rgba(6, 10, 38, 0.7) !important; animation: auto ease 0s 1 normal none running none !important;">⏳ 温馨提示：因手动审核需要时间，请耐心等待。通常 24 小时内必回复！</span><br style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid;"/><span class="qk-md-text complete" style="-webkit-font-smoothing: antialiased; --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-pan-x: ; --tw-pan-y: ; --tw-pinch-zoom: ; --tw-scroll-snap-strictness: proximity; --tw-gradient-from-position: ; --tw-gradient-via-position: ; --tw-gradient-to-position: ; --tw-ordinal: ; --tw-slashed-zero: ; --tw-numeric-figure: ; --tw-numeric-spacing: ; --tw-numeric-fraction: ; --tw-ring-inset: ; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 transparent; --tw-ring-shadow: 0 0 transparent; --tw-shadow: 0 0 transparent; --tw-shadow-colored: 0 0 transparent; --tw-blur: ; --tw-brightness: ; --tw-contrast: ; --tw-grayscale: ; --tw-hue-rotate: ; --tw-invert: ; --tw-saturate: ; --tw-sepia: ; --tw-drop-shadow: ; --tw-backdrop-blur: ; --tw-backdrop-brightness: ; --tw-backdrop-contrast: ; --tw-backdrop-grayscale: ; --tw-backdrop-hue-rotate: ; --tw-backdrop-invert: ; --tw-backdrop-opacity: ; --tw-backdrop-saturate: ; --tw-backdrop-sepia: ; --tw-contain-size: ; --tw-contain-layout: ; --tw-contain-paint: ; --tw-contain-style: ; box-sizing: border-box; border: 0px solid; opacity: 1; font-size: 15px; color: rgba(6, 10, 38, 0.7) !important; animation: auto ease 0s 1 normal none running none !important;">🔒 所有资料仅限个人学习使用，请勿二次传播。</span></span>
+			</section>
+		</blockquote>
+		<p>
+			<br/>
+		</p>
+	</section>
+</section>
+<section class="_135editor">
+	<section class="_135editor">
+		<p style="text-align:center;" align="center">
+			<img src="https://bexp.135editor.com/files/users/946/9467025/202602/D2fIO5g8_2kT3.png?auth_key=1771171199-0-0-25d7220d6bb095309b817fbcddd1fe8c&x-bce-process=image%2Fauto-orient%2Co_1" alt="" style="vertical-align:baseline;" draggable="false"/>
+		</p>
+	</section>
+</section>
