@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>亚组分析 - 职业倦怠风险因素</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.4;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .subgroup-header {
+            background-color: #e6f3ff;
+            font-weight: bold;
+        }
+        .p-interaction {
+            font-style: italic;
+            color: #555;
+        }
+        .confidence-interval {
+            font-size: 0.9em;
+            color: #666;
+        }
+        .table-caption {
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .table-footer {
+            font-size: 12px;
+            color: #666;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="table-caption">表1. 职业倦怠风险因素的亚组分析</div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>亚组</th>
+                <th>n/N (%)</th>
+                <th>构成比 (%)</th>
+                <th>风险比 (HR)</th>
+                <th>95% CI</th>
+                <th>P值</th>
+                <th>交互作用P值</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="subgroup-header">
+                <td colspan="7">年龄组</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;&lt;40岁</td>
+                <td>204/879 (23.2%)</td>
+                <td>58.6</td>
+                <td>1.04</td>
+                <td>0.92-1.17</td>
+                <td>0.550</td>
+                <td rowspan="2" class="p-interaction">0.464</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;≥40岁</td>
+                <td>143/621 (23.0%)</td>
+                <td>41.4</td>
+                <td>0.95</td>
+                <td>0.83-1.09</td>
+                <td>0.472</td>
+            </tr>
+            
+            <tr class="subgroup-header">
+                <td colspan="7">性别</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;女性</td>
+                <td>172/754 (22.8%)</td>
+                <td>50.27</td>
+                <td>1.04</td>
+                <td>0.91-1.18</td>
+                <td>0.559</td>
+                <td rowspan="2" class="p-interaction">0.392</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;男性</td>
+                <td>175/746 (23.5%)</td>
+                <td>49.73</td>
+                <td>0.97</td>
+                <td>0.86-1.10</td>
+                <td>0.643</td>
+            </tr>
+            
+            <tr class="subgroup-header">
+                <td colspan="7">职业级别</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;初级</td>
+                <td>125/505 (24.8%)</td>
+                <td>33.67</td>
+                <td>1.07</td>
+                <td>0.92-1.25</td>
+                <td>0.378</td>
+                <td rowspan="3" class="p-interaction">0.507</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;中级</td>
+                <td>113/516 (21.9%)</td>
+                <td>34.40</td>
+                <td>1.04</td>
+                <td>0.89-1.22</td>
+                <td>0.598</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;高级</td>
+                <td>109/479 (22.8%)</td>
+                <td>31.93</td>
+                <td>0.93</td>
+                <td>0.79-1.10</td>
+                <td>0.403</td>
+            </tr>
+            
+            <tr class="subgroup-header">
+                <td colspan="7">婚姻状况</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;已婚</td>
+                <td>173/741 (23.3%)</td>
+                <td>49.40</td>
+                <td>1.00</td>
+                <td>0.88-1.14</td>
+                <td>0.972</td>
+                <td rowspan="2" class="p-interaction">0.841</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;单身</td>
+                <td>174/759 (22.9%)</td>
+                <td>50.60</td>
+                <td>1.02</td>
+                <td>0.90-1.15</td>
+                <td>0.781</td>
+            </tr>
+            
+            <tr class="subgroup-header">
+                <td colspan="7">收入水平</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;高收入</td>
+                <td>122/498 (24.5%)</td>
+                <td>33.20</td>
+                <td>1.04</td>
+                <td>0.89-1.21</td>
+                <td>0.641</td>
+                <td rowspan="3" class="p-interaction">0.454</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;低收入</td>
+                <td>106/487 (21.8%)</td>
+                <td>32.47</td>
+                <td>0.95</td>
+                <td>0.80-1.13</td>
+                <td>0.560</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;中等收入</td>
+                <td>119/515 (23.1%)</td>
+                <td>34.33</td>
+                <td>0.95</td>
+                <td>0.81-1.11</td>
+                <td>0.511</td>
+            </tr>
+            
+            <tr class="subgroup-header">
+                <td colspan="7">压力指数</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;低压力</td>
+                <td>168/750 (22.4%)</td>
+                <td>50.00</td>
+                <td>1.02</td>
+                <td>0.89-1.17</td>
+                <td>0.758</td>
+                <td rowspan="2" class="p-interaction">0.696</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;高压力</td>
+                <td>179/750 (23.9%)</td>
+                <td>50.00</td>
+                <td>0.99</td>
+                <td>0.87-1.11</td>
+                <td>0.823</td>
+            </tr>
+            
+            <tr class="subgroup-header">
+                <td colspan="7">工作负荷</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;低负荷</td>
+                <td>151/750 (20.1%)</td>
+                <td>50.00</td>
+                <td>1.11</td>
+                <td>0.97-1.28</td>
+                <td>0.133</td>
+                <td rowspan="2" class="p-interaction">0.033</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;高负荷</td>
+                <td>196/750 (26.1%)</td>
+                <td>50.00</td>
+                <td>0.91</td>
+                <td>0.81-1.02</td>
+                <td>0.115</td>
+            </tr>
+            
+            <tr class="subgroup-header">
+                <td colspan="7">部门</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;财务部</td>
+                <td>85/347 (24.5%)</td>
+                <td>23.13</td>
+                <td>0.83</td>
+                <td>0.67-1.01</td>
+                <td>0.069</td>
+                <td rowspan="4" class="p-interaction">0.058</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;人力资源部</td>
+                <td>84/382 (22.0%)</td>
+                <td>25.47</td>
+                <td>1.02</td>
+                <td>0.86-1.22</td>
+                <td>0.796</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;IT部</td>
+                <td>89/400 (22.2%)</td>
+                <td>26.67</td>
+                <td>1.21</td>
+                <td>0.99-1.49</td>
+                <td>0.066</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;销售部</td>
+                <td>89/371 (24.0%)</td>
+                <td>24.73</td>
+                <td>0.96</td>
+                <td>0.81-1.14</td>
+                <td>0.640</td>
+            </tr>
+            
+            <tr class="subgroup-header">
+                <td colspan="7">咖啡因摄入</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;否</td>
+                <td>183/784 (23.3%)</td>
+                <td>52.27</td>
+                <td>1.02</td>
+                <td>0.90-1.15</td>
+                <td>0.734</td>
+                <td rowspan="2" class="p-interaction">0.977</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;是</td>
+                <td>164/716 (22.9%)</td>
+                <td>47.73</td>
+                <td>1.00</td>
+                <td>0.87-1.14</td>
+                <td>0.968</td>
+            </tr>
+            
+            <tr class="subgroup-header">
+                <td colspan="7">饮酒</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;否</td>
+                <td>176/754 (23.3%)</td>
+                <td>50.27</td>
+                <td>1.06</td>
+                <td>0.93-1.21</td>
+                <td>0.397</td>
+                <td rowspan="2" class="p-interaction">0.385</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;是</td>
+                <td>171/746 (22.9%)</td>
+                <td>49.73</td>
+                <td>0.97</td>
+                <td>0.86-1.10</td>
+                <td>0.637</td>
+            </tr>
+            
+            <tr class="subgroup-header">
+                <td colspan="7">失眠</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;无</td>
+                <td>169/753 (22.4%)</td>
+                <td>50.20</td>
+                <td>1.09</td>
+                <td>0.96-1.24</td>
+                <td>0.206</td>
+                <td rowspan="2" class="p-interaction">0.122</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;有</td>
+                <td>178/747 (23.8%)</td>
+                <td>49.80</td>
+                <td>0.92</td>
+                <td>0.82-1.05</td>
+                <td>0.212</td>
+            </tr>
+            
+            <tr class="subgroup-header">
+                <td colspan="7">焦虑</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;无</td>
+                <td>180/766 (23.5%)</td>
+                <td>51.07</td>
+                <td>0.98</td>
+                <td>0.87-1.11</td>
+                <td>0.775</td>
+                <td rowspan="2" class="p-interaction">0.617</td>
+            </tr>
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;有</td>
+                <td>167/734 (22.8%)</td>
+                <td>48.93</td>
+                <td>1.02</td>
+                <td>0.90-1.17</td>
+                <td>0.732</td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <div class="table-footer">
+        <p>注：HR = 风险比；CI = 置信区间；n/N = 病例数/总人数</p>
+        <p>所有数值保留两位小数，P值保留三位小数</p>
+    </div>
+</body>
+</html>
